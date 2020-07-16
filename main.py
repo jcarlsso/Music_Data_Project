@@ -21,27 +21,37 @@ combined_json_files = []
 def before2018():
     for data in jdata0:
         if dt.datetime.strptime(data['ts'], '%Y-%m-%dT%H:%M:%SZ') < dt.datetime(2018,12,27,0,0,0,):
-            combined_json_files.append(data)
+            if data['master_metadata_album_artist_name'] is not None:
+                combined_json_files.append(data)
     for data in jdata1:
         if dt.datetime.strptime(data['ts'], '%Y-%m-%dT%H:%M:%SZ') < dt.datetime(2018,12,27,0,0,0,):
-            combined_json_files.append(data)
+            if data['master_metadata_album_artist_name'] is not None:
+                combined_json_files.append(data)
     for data in jdata2:
         if dt.datetime.strptime(data['ts'], '%Y-%m-%dT%H:%M:%SZ') < dt.datetime(2018,12,27,0,0,0,):
-            combined_json_files.append(data) 
+            if data['master_metadata_album_artist_name'] is not None:
+                combined_json_files.append(data) 
 
 before2018()
 
+print(len(combined_json_files))
 
-x = pd.Series(combined_json_files)
+test_list = []
 
-for data in x:
-    print(pd.Series(data['master_metadata_album_artist_name']).unique())
+for data in combined_json_files:
+    if data['master_metadata_album_artist_name'] != 'Mac Miller':
+        if data['master_metadata_album_artist_name'] != 'Drake':
+            if data['master_metadata_album_artist_name'] != 'Kendrick Lamar':
+                if data['master_metadata_album_artist_name'] != 'Logic':
+                    test_list.append(data)
+
+print(len(test_list))
 
 
 
 
-# print(combined_json_files)
-# print(len(combined_json_files))
+
+
 # TDF = 0
 # Track_1 = 0
 # Track_2 = 0
@@ -87,24 +97,24 @@ for data in x:
 #             Track_9 += 1
 #         if data['master_metadata_track_name'] == 'God Is Fair, Sexy Nasty (feat. Kendrick Lamar)':
 #             Track_10 += 1
-#         # if data['master_metadata_track_name'] == 'Watching Movies':
-#         #     Track_11 += 1
-#         # if data['master_metadata_track_name'] == 'Suplexes Inside of Complexes and Duplexes':
-#         #     Track_12 += 1
-#         # if data['master_metadata_track_name'] == 'Remember':
-#         #     Track_13 += 1
-#         # if data['master_metadata_track_name'] == 'Someone Like You':
-#         #     Track_14 += 1
-#         # if data['master_metadata_track_name'] == 'Aquarium':
-#         #     Track_15 += 1
-#         # if data['master_metadata_track_name'] == 'Youforia':
-#         #     Track_16 += 1
-#         # if data['master_metadata_track_name'] == 'Goosebumpz (Bonus Track)':
-#         #     Track_17 += 1
-#         # if data['master_metadata_track_name'] == 'O.K. (feat. Tyler, The Creator) [Bonus Track]':
-#         #     Track_18 += 1
-#         # if data['master_metadata_track_name'] == 'Claymation (feat. Vinny Radio) [Bonus Track]':
-#         #     Track_19 += 1
+#         if data['master_metadata_track_name'] == 'Watching Movies':
+#             Track_11 += 1
+#         if data['master_metadata_track_name'] == 'Suplexes Inside of Complexes and Duplexes':
+#             Track_12 += 1
+#         if data['master_metadata_track_name'] == 'Remember':
+#             Track_13 += 1
+#         if data['master_metadata_track_name'] == 'Someone Like You':
+#             Track_14 += 1
+#         if data['master_metadata_track_name'] == 'Aquarium':
+#             Track_15 += 1
+#         if data['master_metadata_track_name'] == 'Youforia':
+#             Track_16 += 1
+#         if data['master_metadata_track_name'] == 'Goosebumpz (Bonus Track)':
+#             Track_17 += 1
+#         if data['master_metadata_track_name'] == 'O.K. (feat. Tyler, The Creator) [Bonus Track]':
+#             Track_18 += 1
+#         if data['master_metadata_track_name'] == 'Claymation (feat. Vinny Radio) [Bonus Track]':
+#             Track_19 += 1
 
 
 # print("Total GO:OD AM Plays: ", TDF)
